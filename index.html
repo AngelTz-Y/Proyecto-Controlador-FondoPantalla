@@ -4,20 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- Enlace a Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo para el contenedor que alberga la imagen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* Fondo opcional */
+            overflow: hidden;
+        }
+
+        /* Estilo para la imagen */
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            border: 5px solid #fff;
+        }
+
+        /* Estilo para el botón de cierre "X" */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(255, 0, 0, 0.7);
+            transform: rotate(180deg);
+        }
+
+        .close-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Animación para la aparición de la "X" */
+        @keyframes appear {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-btn {
+            animation: appear 0.5s ease-out;
+        }
+    </style>
 </head>
-<body class="relative bg-gray-100 h-screen overflow-hidden flex justify-center items-center">
+<body>
+    <!-- Botón de cerrar -->
+    <button class="close-btn" onclick="closeWindow();">X</button>
 
-    <!-- Imagen centrada con Tailwind -->
-    <img src="img/fondo-cesfam-saludpaillaco.jpg" alt="Imagen de fondo" class="object-cover w-full h-full absolute top-0 left-0 z-0">
+    <!-- Imagen centrada -->
+    <img src="img/fondo-cesfam-saludpaillaco.jpg" alt="Imagen de fondo">
 
-    <!-- Botón de cerrar "X" -->
-    <button class="close-btn absolute top-5 right-5 text-white bg-black bg-opacity-70 hover:bg-red-600 p-4 rounded-full text-3xl transition-transform transform hover:rotate-180 focus:outline-none z-10" onclick="closeWindow();">
-        X
-    </button>
-
-    <!-- Sonido de cierre -->
+    <!-- Sonido de cierre (URL de ejemplo, puedes cambiarla por un sonido local) -->
     <audio id="close-sound" src="sounds/success_bell-6776.mp3" preload="auto"></audio>
 
     <script>
@@ -30,7 +85,7 @@
             // Intentar cerrar la ventana con un pequeño retraso para que el sonido se escuche
             setTimeout(function() {
                 window.close();
-            }, 2000);  // Espera 2 segundos antes de cerrar
+            }, 2000);  // Espera medio segundo antes de cerrar
         }
     </script>
 </body>
