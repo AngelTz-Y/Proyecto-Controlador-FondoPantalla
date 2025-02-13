@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Estilo para el contenedor que alberga la imagen */
+        /* Estilo global */
         body, html {
             margin: 0;
             padding: 0;
@@ -13,8 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0; /* Fondo opcional */
-            overflow: hidden;
+            background-color: #f0f0f0;
         }
 
         /* Estilo para la imagen */
@@ -63,22 +63,76 @@
         .close-btn {
             animation: appear 0.5s ease-out;
         }
+
+        /* Estilo para el contenedor del mensaje */
+        .close-message {
+            position: absolute;
+            bottom: 50px;
+            text-align: center;
+            color: #333;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        /* Estilo para el modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
     <!-- Botón de cerrar -->
-    <button class="close-btn" onclick="confirmClose();">X</button>
+    <button class="close-btn" onclick="showModal();">X</button>
 
     <!-- Imagen centrada -->
     <img src="img/fondo-cesfam-saludpaillaco.jpg" alt="Imagen de fondo">
 
+    <!-- Modal para el mensaje de cierre -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3 class="text-lg font-semibold">¡Casi Listo!</h3>
+            <p>Para cerrar esta pestaña, haz clic en el botón de cierre o cierra la pestaña manualmente.</p>
+            <button onclick="closeWindow();" class="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Cerrar Pestaña</button>
+        </div>
+    </div>
+
     <script>
-        // Función para confirmar y cerrar la ventana
-        function confirmClose() {
-            var confirmation = confirm("¿Estás seguro de que quieres cerrar esta pestaña?"); 
-            if (confirmation) {
-                window.close();  // Intenta cerrar la pestaña (solo funciona si fue abierta con JavaScript)
-            }
+        // Función que muestra el modal automáticamente
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById("modal").style.display = "flex";
+            }, 1000);  // Se muestra el modal después de 1 segundo
+        }
+
+        // Función para mostrar el modal cuando se hace clic en la "X"
+        function showModal() {
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        // Función para intentar cerrar la ventana
+        function closeWindow() {
+            alert("La ventana no puede ser cerrada automáticamente debido a restricciones de seguridad.");
+            // Esta parte es solo para simular el intento de cierre, no se puede forzar el cierre
+            window.close();
         }
     </script>
 </body>
