@@ -67,25 +67,18 @@
 </head>
 <body>
     <!-- Botón de cerrar -->
-    <button class="close-btn" onclick="closeWindow();">X</button>
+    <button class="close-btn" onclick="confirmClose();">X</button>
 
     <!-- Imagen centrada -->
     <img src="img/fondo-cesfam-saludpaillaco.jpg" alt="Imagen de fondo">
 
-    <!-- Sonido de cierre (URL de ejemplo, puedes cambiarla por un sonido local) -->
-    <audio id="close-sound" src="sounds/success_bell-6776.mp3" preload="auto"></audio>
-
     <script>
-        // Función para cerrar la ventana con sonido
-        function closeWindow() {
-            // Reproducir el sonido de cierre
-            var sound = document.getElementById("close-sound");
-            sound.play();  // Reproduce el sonido cuando se hace clic en el botón
-            
-            // Intentar cerrar la ventana con un pequeño retraso para que el sonido se escuche
-            setTimeout(function() {
-                window.close();
-            }, 2000);  // Espera medio segundo antes de cerrar
+        // Función para confirmar y cerrar la ventana
+        function confirmClose() {
+            var confirmation = confirm("¿Estás seguro de que quieres cerrar esta pestaña?"); 
+            if (confirmation) {
+                window.close();  // Intenta cerrar la pestaña (solo funciona si fue abierta con JavaScript)
+            }
         }
     </script>
 </body>
